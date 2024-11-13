@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automação 📱</title>
+</head>
+
+<body>
+    <div class="fundo"></div>
+    <div class="main">
+        <div class="txt1">
+            <h1>Automação</h1>
+            <div class="graus"><span>🌡️68°C </span>
+
+                <span> 💧50% </span>
+            </div>
+        </div>
+        <div class="button-container">
+            <button id="meubt1" class="b b-1" onclick="toggleRele1()">Luz 1</button>
+            <button id="meubt2" class="b b-2" onclick="toggleRele2()">Luz 2</button>
+            <button id="meubt3" class="b b-3" onclick="toggleRele3()">Luz 3</button>
+            <button id="meubt4" class="b b-4" onclick="toggleRele4()">Ventilador</button>
+            <button id="meubt5" class="b b-5" onclick="toggleRele5()">Bomba</button>
+            <button id="meubt6" class="b b-6" onclick="Camera1()">Camera</button>
+            <button id="meubt7" class="b b-7" onclick="toggleRele7()">TV</button>
+            <button id="meubt8" class="b b-8" onclick="toggleRele8()">Microtik</button>
+            <button id="meubt9" class="b b-9" onclick="toggleRele9()">Tomada</button>
+        </div>
+    </div>
+
+    <script>
+
+        let isRele1On = false;
+        let isRele2On = false;
+        let isRele3On = false;
+        let isRele4On = false;
+        let isRele5On = false;
+
+        setInterval(function () {
+            location.reload();
+        }, 60000);
+
+        function toggleRele1() {
+            isRele1On = !isRele1On;
+            const button1 = document.getElementById("meubt1");
+
+            if (isRele1On) {
+                button1.classList.add("on");
+                button1.classList.remove("off");
+                ligarRele1();
+            } else {
+                button1.classList.add("off");
+                button1.classList.remove("on");
+                desligarRele1();
+            }
+        }
+        function toggleRele2() {
+            isRele2On = !isRele2On;
+            const button2 = document.getElementById("meubt2");
+            if (isRele2On) {
+                button2.classList.add("on");
+                button2.classList.remove("off");
+                ligarRele2();
+            } else {
+                button2.classList.add("off");
+                button2.classList.remove("on");
+                desligarRele2();
+            }
+        }
+        function toggleRele3() {
+            isRele3On = !isRele3On;
+            const button3 = document.getElementById("meubt3");
+            if (isRele3On) {
+                button3.classList.add("on");
+                button3.classList.remove("off");
+                ligarRele3();
+            } else {
+                button3.classList.add("off");
+                button3.classList.remove("on");
+                desligarRele3();
+            }
+        }
+        function toggleRele4() {
+            isRele4On = !isRele4On;
+            const button4 = document.getElementById("meubt4");
+            if (isRele4On) {
+                button4.classList.add("on");
+                button4.classList.remove("off");
+                ligarRele4();
+            } else {
+                button4.classList.add("off");
+                button4.classList.remove("on");
+                desligarRele4();
+            }
+        }
+        function toggleRele5() {
+            isRele5On = !isRele5On;
+            const button5 = document.getElementById("meubt5");
+            if (isRele5On) {
+                button5.classList.add("on");
+                button5.classList.remove("off");
+                ligarRele5();
+            } else {
+                button5.classList.add("off");
+                button5.classList.remove("on");
+                desligarRele5();
+            }
+            function ligarRele1() {
+                var rqr = new XMLHttpRequest();
+                rqr.open('GET', '/ligar1', 'true');
+                rqr.send();
+            }
+            function desligarRele1() {
+                var rqr = new XMLHttpRequest();
+                rqr.open('GET', '/desligar1', 'true');
+                rqr.send();
+            }
+            function ligarRele2() {
+                var rqr = new XMLHttpRequest();
+                rqr.open('GET', '/ligar2', 'true');
+                rqr.send();
+            }
+            function desligarRele2() {
+                var rqr = new XMLHttpRequest();
+                rqr.open('GET', '/desligar2', 'true');
+                rqr.send();
+            }
+            function ligarRele5() {
+                var rqr = new XMLHttpRequest();
+                rqr.open('GET', '/ligarRele5', 'true');
+                rqr.send();
+            }
+            function desligarRele5() {
+                var rqr = new XMLHttpRequest();
+                rqr.open('GET', '/desligarRele5', 'true');
+                rqr.send();
+            }
+
+        }
+        function Camera1() {
+            window.open('http://192.168.1.161', '_blank');
+        }
+    </script>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .graus span {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 40px;
+            text-shadow: 6px 6px 9px black;
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+        .fundo {
+
+            background-image: url(https://raw.githubusercontent.com/Theus00637/imagens/refs/heads/main/fundo%20site.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.855;
+            background-color: rgba(0, 0, 0, 0.507);
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.507);
+        }
+
+        .txt1 {
+            color: rgb(245, 237, 237);
+            text-align: center;
+            font-size: 30px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+
+        }
+
+        .b {
+            padding: 60px 90px;
+            min-width: 150px;
+            max-width: 150px;
+            max-height: 100px;
+            background-color: rgb(239, 247, 255);
+            opacity: 0.9;
+            border-radius: 30PX;
+            color: rgb(0, 0, 0);
+            cursor: pointer;
+            font-size: 18px;
+            margin: 10px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .b-1 {
+            background-image: url(https://raw.githubusercontent.com/Theus00637/automa-ao/refs/heads/main/lampadag4.png);
+            background-position: center;
+            background-size: cover;
+
+        }
+
+        .b-2 {
+            background-image: url(https://raw.githubusercontent.com/Theus00637/automa-ao/refs/heads/main/lampadag4.png);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .b-3 {
+            background-image: url(https://raw.githubusercontent.com/Theus00637/automa-ao/refs/heads/main/lampadag4.png);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .b-4 {
+            background-image: url(https://raw.githubusercontent.com/Theus00637/automa-ao/refs/heads/main/ventilador.png);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .b-5 {
+            background-image: url(https://raw.githubusercontent.com/Theus00637/automa-ao/refs/heads/main/bombag1.png);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .b-6 {
+            background-image: url(https://raw.githubusercontent.com/Theus00637/automa-ao/refs/heads/main/camera.png);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .b-7 {
+            background-image: url(https://raw.githubusercontent.com/Theus00637/automa-ao/refs/heads/main/tv.png);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .b-8 {
+            background-image: url(https://raw.githubusercontent.com/Theus00637/automa-ao/refs/heads/main/microtik.png);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .b-9 {
+            background-image: url(https://raw.githubusercontent.com/Theus00637/automa-ao/refs/heads/main/tomada.png);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .on {
+            border-color: rgb(0, 255, 0);
+        }
+    </style>
+</body>
+
+</html>
