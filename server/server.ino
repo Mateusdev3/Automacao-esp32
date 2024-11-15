@@ -263,20 +263,16 @@ void Oled(){
   display.clearDisplay();
   display.setTextSize(1);  
   display.setTextColor(SSD1306_WHITE); 
-  display.setCursor(0, 34);
-  display.println("Temperatura");
   display.setTextSize(3);
-  display.setCursor(0, 44);
+  display.setCursor(0, 40);
   display.print(temp);
   display.print("C");
 
   // humidade
 
-  display.setTextSize(1);
-  display.setCursor(75, 34);
-  display.print("Humidade");
+  
   display.setTextSize(3);
-  display.setCursor(75, 45);
+  display.setCursor(74, 40);
   display.print(humi);
   display.print("%");
   if (r1 == 1){
