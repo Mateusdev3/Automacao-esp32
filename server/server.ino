@@ -17,6 +17,7 @@
 const char* ssid = "Starlink2.4";
 const char* password = "messias314";
 const char* servidorIP = "http://192.168.1.44";
+const char* servidorIP1 = "http://192.168.1.137";
 const unsigned char monroe [] PROGMEM = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
@@ -149,8 +150,9 @@ void setup() {
 
 void loop() {
   server.handleClient();
-  Temp();
   Oled();
+  Temp();
+  delay(250);
 }
 void handleRoot() {
 
@@ -219,7 +221,7 @@ pagina += "</script>";
 pagina += "<style>";
 pagina += "body { text-align: center; }";
 pagina += ".graus span { font-family: Arial, Helvetica, sans-serif; font-size: 40px; text-shadow: 6px 6px 9px black; margin-left: 30px; margin-right: 30px; }";
-pagina += ".fundo { background-image: url(https://raw.githubusercontent.com/Mateusdev3/automa-ao/refs/heads/main/fundo%20site.png);";
+pagina += ".fundo { background-image: url(https://raw.githubusercontent.com/Mateusdev3/autoresindencial/refs/heads/main/images/fundo%20site.png);";
 pagina += "background-size: cover; background-repeat: no-repeat; height: 100vh; width: 100vw; position: fixed; top: 0; left: 0;";
 pagina += "z-index: -1; opacity: 0.855; background-color: rgba(0, 0, 0, 0.507); }";
 pagina += ".main { display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.507); }";
@@ -228,21 +230,19 @@ pagina += ".button-container { display: flex; justify-content: center; align-ite
 pagina += ".b { padding: 60px 90px; min-width: 150px; max-width: 150px; max-height: 100px; background-color: rgb(239, 247, 255); opacity: 0.9;";
 pagina += "border-radius: 30px; color: rgb(0, 0, 0); cursor: pointer; font-size: 18px; margin: 10px; text-align: center;";
 pagina += "display: flex; justify-content: center; align-items: center; }";
-pagina += ".b-1 { background-image: url(https://raw.githubusercontent.com/Mateusdev3/automa-ao/refs/heads/main/lampadag4.png);";
+pagina += ".b-1 { background-image: url(https://raw.githubusercontent.com/Mateusdev3/autoresindencial/refs/heads/main/images/lapadag2.png);";
 pagina += "background-position: center; background-size: cover; }";
-pagina += ".b-2 { background-image: url(https://raw.githubusercontent.com/Mateusdev3/automa-ao/refs/heads/main/lampadag4.png); background-position: center; background-size: cover; }";
-pagina += ".b-3 { background-image: url(https://raw.githubusercontent.com/Mateusdev3/automa-ao/refs/heads/main/lampadag4.png); background-position: center; background-size: cover; }";
-pagina += ".b-4 { background-image: url(https://raw.githubusercontent.com/Mateusdev3/automa-ao/refs/heads/main/ventilador.png); background-position: center; background-size: cover; }";
-pagina += ".b-5 { background-image: url(https://raw.githubusercontent.com/Mateusdev3/automa-ao/refs/heads/main/ventilador.png); background-position: center; background-size: cover; }";
-pagina += ".b-6 { background-image: url(https://raw.githubusercontent.com/Theus00637/automa-ao/refs/heads/main/camera.png); background-position: center; background-size: cover; }";
-pagina += ".b-7 { background-image: url(https://raw.githubusercontent.com/Theus00637/automa-ao/refs/heads/main/tv.png); background-position: center; background-size: cover; }";
-pagina += ".b-8 { background-image: url(https://raw.githubusercontent.com/Theus00637/automa-ao/refs/heads/main/microtik.png); background-position: center; background-size: cover; }";
-pagina += ".b-9 { background-image: url(https://raw.githubusercontent.com/Theus00637/automa-ao/refs/heads/main/tomada.png); background-position: center; background-size: cover; }";
+pagina += ".b-2 { background-image: url(https://raw.githubusercontent.com/Mateusdev3/autoresindencial/refs/heads/main/images/lampadag4.png); background-position: center; background-size: cover; }";
+pagina += ".b-3 { background-image: url(https://raw.githubusercontent.com/Mateusdev3/autoresindencial/refs/heads/main/images/lampadag4.png); background-position: center; background-size: cover; }";
+pagina += ".b-4 { background-image: url(https://raw.githubusercontent.com/Mateusdev3/autoresindencial/refs/heads/main/images/ventilador.png); background-position: center; background-size: cover; }";
+pagina += ".b-5 { background-image: url(https://raw.githubusercontent.com/Mateusdev3/autoresindencial/refs/heads/main/images/bombag1.png); background-position: center; background-size: cover; }";
+pagina += ".b-6 { background-image: url(https://raw.githubusercontent.com/Mateusdev3/autoresindencial/refs/heads/main/images/camera.png); background-position: center; background-size: cover; }";
+pagina += ".b-7 { background-image: url(https://raw.githubusercontent.com/Mateusdev3/autoresindencial/refs/heads/main/images/tv.png); background-position: center; background-size: cover; }";
+pagina += ".b-8 { background-image: url(https://raw.githubusercontent.com/Mateusdev3/autoresindencial/refs/heads/main/images/microtik.png); background-position: center; background-size: cover; }";
+pagina += ".b-9 { background-image: url(https://raw.githubusercontent.com/Mateusdev3/autoresindencial/refs/heads/main/images/tomada.png); background-position: center; background-size: cover; }";
 pagina += ".on { border-color: rgb(0, 255, 0); }";
 pagina += "</style></body></html>";
-
-
-  server.send(200, "text/html", pagina);
+ server.send(200, "text/html", pagina);
 }
 // Funções
 void ini(){
@@ -257,7 +257,6 @@ void Temp() {
   int h = DHT.humidity;
   temp = t;
   humi = h;
-  delay(1000);         
 }  
 void Oled(){
   display.clearDisplay();
@@ -267,10 +266,9 @@ void Oled(){
   display.setCursor(0, 40);
   display.print(temp);
   display.print("C");
-
+  display.drawLine(0, 33, 128, 33, SSD1306_WHITE);
+  display.drawLine(62, 64, 62, 33, SSD1306_WHITE);
   // humidade
-
-  
   display.setTextSize(3);
   display.setCursor(74, 40);
   display.print(humi);
@@ -278,19 +276,19 @@ void Oled(){
   if (r1 == 1){
     display.setTextSize(1);  
     display.setTextColor(SSD1306_WHITE); 
-    display.setCursor(85, 5);
+    display.setCursor(0, 5);
     display.println("Luz 1");
   }
   if (r2 == 1){
     display.setTextSize(1);  
     display.setTextColor(SSD1306_WHITE); 
-    display.setCursor(85, 15);
+    display.setCursor(40, 5);
     display.println("Luz 2");
   }
   if (r3 == 1){
     display.setTextSize(1);  
     display.setTextColor(SSD1306_WHITE); 
-    display.setCursor(85, 25);
+    display.setCursor(0, 25);
     display.println("Luz 3");
   }
   if (r4 == 1){
@@ -302,7 +300,7 @@ void Oled(){
   if (r5 == 1){
     display.setTextSize(1);  
     display.setTextColor(SSD1306_WHITE); 
-    display.setCursor(85, 45);
+    display.setCursor(80, 5);
     display.println("Bomba");
   }
   display.display();
@@ -310,19 +308,31 @@ void Oled(){
 }
 
 void handleLigar() {
-  digitalWrite(relePin, LOW);
-  server.send(200, "text/plain", "Relé ligado");
-  Serial.println("Ligando rele 1");
-  r1 = 1;
-  
+  HTTPClient http;
+  String url = String(servidorIP1) + "/ligar";
+  http.begin(url);
+  int codigohttp = http.GET();
+  if(codigohttp > 0){
+     Serial.printf("Requisição GET bem-sucedida, código de status: %d\n", );
+     server.send(200, "text/plain", "Rele Luz do quarto");
+  }else {
+    Serial.printf("Erro na requisição GET: %s\n", http.errorToString(codigohttp).c_str());
+  }
+  http.end();
 }
 
 void handleDesligar() {
-  digitalWrite(relePin, HIGH);
-  server.send(200, "text/plain", "Relé desligado");
-  Serial.println("desligando rele1");
-  r1 = 0;
-  
+  HTTPClient http;
+  String url = String(servidorIP1) + "/desligar";
+  http.begin(url);
+  int codigohttp = http.GET();
+  if(codigohttp > 0){
+     Serial.printf("Requisição GET bem-sucedida, código de status: %d\n", codigohttp);
+     server.send(200, "text/plain", "Rele Luz do quarto");
+  }else {
+    Serial.printf("Erro na requisição GET: %s\n", http.errorToString(codigohttp).c_str());
+  }
+  http.end();
 }
 
 void handleLigar2() {

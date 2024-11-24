@@ -17,6 +17,7 @@
 const char* ssid = "Starlink2.4";
 const char* password = "messias314";
 const char* servidorIP = "http://192.168.1.44";
+const char* servidorIP1 = "http://192.168.1.137";
 
 DFRobot_DHT11 DHT;
 WebServer server(80);
@@ -201,15 +202,30 @@ void Oled(){
 
 
 void handleLigar() {
-  digitalWrite(relePin, LOW);
-  server.send(200, "text/plain", "Relé ligado");
-  Serial.println("Ligando rele 1");
+  HTTPClient http;
+  String url = String(servidorIP1) + "/ligar";
+  http.begin(url);
+  int codigohttp = http.GET();
+  if(codigohttp > 0){
+     Serial.printf("Requisição GET bem-sucedida, código de status: %d\n", httpCode);
+     server.send(200, "text/plain", "Rele Luz do quarto");
+  }else {
+    Serial.printf("Erro na requisição GET: %s\n", http.errorToString(httpCode).c_str());
+  }
+  http.end();
 }
 
 void handleDesligar() {
-  digitalWrite(relePin, HIGH);
-  server.send(200, "text/plain", "Relé desligado");
-  Serial.println("desligando rele1");
+  String url = String(servidorIP1) + "/desligar";
+  http.begin(url);
+  int codigohttp = http.GET();
+  if(codigohttp > 0){
+     Serial.printf("Requisição GET bem-sucedida, código de status: %d\n", httpCode);
+     server.send(200, "text/plain", "Rele Luz do quarto");
+  }else {
+    Serial.printf("Erro na requisição GET: %s\n", http.errorToString(httpCode).c_str());
+  }
+  http.end();
 }
 
 void handleLigar2() {
